@@ -1,0 +1,22 @@
+.counter-wrap {
+    display: inline-block;
+    margin: 3%;   
+    padding: 20px 30px;  
+    border-radius: 5px;
+    background-color: #EEEEEE;
+	font-size: 15px;
+}
+@media (min-width: 768px) {
+	.counter-wrap {
+		font-size: 19px;
+	}
+}
+
+.counter {
+
+}
+
+.js .counter-word {
+    display: inline-block;
+    text-align: left;
+}

@@ -2,26 +2,37 @@
 <html class="no-js" lang="ru">
 
 <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-   <title>Counter</title>
-   <meta name="description" content="">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="css/normalize.min.css">
-   <link rel="stylesheet" href="css/main.css">
-   <script>!function(e) { e.className = e.className.replace(/\bno-js\b/, "js") }(document.documentElement)</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Counter</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script>!function (e) {
+        e.className = e.className.replace(/\bno-js\b/, "js")
+    }(document.documentElement)</script>
 </head>
 
 <body>
-    <h3 class="counter-wrap">
-        Я хочу съесть
-        <span class="counter" data-min-delay="1" data-max-delay="1.5" data-direction="increase">19</span>
-        <span class="counter-word"
-              data-variants="блинчик, блинчика, блинчиков">блинчиков</span>
-    </h3>
+<h3 class="counter-wrap">
+    Я хочу съесть
+    <span class="counter" data-min-delay="1" data-max-delay="2" data-direction="increase">19</span>
+    <span class="counter-word"
+          data-variants="блинчик, блинчика, блинчиков">блинчиков</span>
+</h3>
+<h3 class="counter-wrap">
+    ...но могу съесть
+    <span class="counter2" data-min-delay="2" data-max-delay="4" data-direction="increase">8</span>
+    <span class="counter-word"
+          data-variants="блин, блина, блинов">блинов</span>
+</h3>
 
-   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-   <script src="js/main.js"></script>
+<script src="js/main.js"></script>
+<script>
+    var myCounter = new Counter(".counter");
+    var myCounter2 = new Counter(".counter2");
+</script>
 </body>
 
 </html>

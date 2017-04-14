@@ -1,6 +1,6 @@
 (function () {
 
-    Counter = function (container) {
+    Counter = function (container, options) {
 
         var counter = document.querySelector(container);
 
@@ -10,12 +10,12 @@
             }
 
             var counterDecs = counter.nextElementSibling;
-            var minDelay = counter.getAttribute("data-min-delay");
-            var maxDelay = counter.getAttribute("data-max-delay");
-            var direction = counter.getAttribute("data-direction");
+            var minDelay = options.minDelay;
+            var maxDelay = options.maxDelay;
+            var direction = options.direction;
             var counterInLocStor = localStorage.getItem("counter");
-            var arrValues = counterDecs.getAttribute("data-variants").split(",");
-
+            var arrValues = options.variants.split(",");
+            
             if (minDelay === undefined || minDelay === undefined || isNaN(minDelay) || isNaN(maxDelay)) {
                 minDelay = 2;
                 maxDelay = 5;

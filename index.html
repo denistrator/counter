@@ -17,21 +17,31 @@
 <body>
 <h3 class="counter-wrap">
     Я хочу съесть
-    <span class="counter" data-min-delay="1" data-max-delay="2" data-direction="increase">19</span>
-    <span class="counter-word"
-          data-variants="блинчик, блинчика, блинчиков">блинчиков</span>
+    <span class="counter">19</span>
+    <span class="counter-word">блинчиков</span>
 </h3>
 <h3 class="counter-wrap">
     ...но могу съесть
-    <span class="counter2" data-min-delay="2" data-max-delay="4" data-direction="increase">8</span>
-    <span class="counter-word"
-          data-variants="блин, блина, блинов">блинов</span>
+    <span class="counter2">8</span>
+    <span class="counter-word">блинов</span>
 </h3>
 
 <script src="js/main.js"></script>
 <script>
-    var myCounter = new Counter(".counter");
-    var myCounter2 = new Counter(".counter2");
+    var myCounter = new Counter(".counter", {
+        minDelay: 1.3,
+        maxDelay: 2.22,
+        direction: "in",
+        variants: "блинчик, блинчика, блинчиков"
+
+    });
+    var myCounter2 = new Counter(".counter2", {
+        minDelay: 1.44,
+        maxDelay: 2.67,
+        direction: "in",
+        variants: "блин, блина, блинов"
+
+    });
 </script>
 </body>
 

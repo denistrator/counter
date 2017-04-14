@@ -1,0 +1,14 @@
+{
+  "name": "counter",
+  "version": "1.0.0",
+  "description": "Simple JS pugin wich count things",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "denistrator",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.8"
+  }
+}

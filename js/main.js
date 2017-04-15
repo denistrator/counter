@@ -3,6 +3,18 @@
     var Counter = function (container, variants, params) {
         if (!(this instanceof Counter)) return new Counter(container, variants, params);
 
+        var self = this;
+        self.counter = document.querySelector(container);
+
+        if (!self.counter) {
+            console.log("Can not find your counter. Check container:", "\""+container+"\"");
+            return;
+        }
+        if (isNaN(self.counter.innerText)) {
+            console.log("Counter has incorrect value");
+            self.counter.innerText = 0;
+        }
+
         var defaults = {
             minDelay: 0.77,
             maxDelay: 1.11,
@@ -10,51 +22,33 @@
         };
 
         params = params || {};
-
         for (var def in defaults) {
-            if (typeof params[def] === 'undefined' || typeof params[def] === null ||isNaN(params[def])) {
+            if (typeof params[def] === 'undefined' || typeof params[def] === null || isNaN(params[def])) {
                 params[def] = defaults[def];
             }
         }
-
-        var self = this;
         self.params = params;
 
-        var counter = document.querySelector(container);
 
-        if (counter) {
-            if (isNaN(counter.innerText)) {
-                console.log("Counter has incorrect value");
-            }
+        var counterDecs = self.counter.nextElementSibling;
+        var counterInLocStor = localStorage.getItem("counter");
+        var arrValues = variants.split(",");
 
-            var counterDecs = counter.nextElementSibling;
-            var counterInLocStor = localStorage.getItem("counter");
-            var arrValues = variants.split(",");
+        if (counterInLocStor > +self.counter.innerText &&
+            counterInLocStor < +self.counter.innerText * 1.4) {
+            self.counter.innerText = +localStorage.getItem("counter");
+        } //if value in localStorage exists(and fits), apply it in counter
 
-            // if (direction === null || direction === "" ||
-            //     (direction !== "increase" && direction !== "in" &&
-            //     direction !== "decrease" && direction !== "dec")) {
-            //     direction = "increase";
-            //     console.log("direction data attr is not set or set incorrect for", counter, "default value was appled");
-            // }
-
-
-
-            if (counterInLocStor > +counter.innerText &&
-                counterInLocStor < +counter.innerText * 1.4) {
-                counter.innerText = +localStorage.getItem("counter");
-            } //if value in localStorage exists(and fits), apply it in counter
-
-            if (!isNaN(counter.innerText)) {
-                updateCounter(counter, self.params.minDelay, self.params.maxDelay); //2nd, 3rd args are delay in sec
-            }
-
-            setMaxWidth(counterDecs, arrValues);
-            // find max width for elem based on array of possible values
-            window.onresize = function () {
-                setMaxWidth(counterDecs, arrValues);
-            };
+        if (!isNaN(self.counter.innerText)) {
+            updateCounter(self.counter, self.params.minDelay, self.params.maxDelay); //2nd, 3rd args are delay in sec
         }
+
+        setMaxWidth(counterDecs, arrValues);
+        // find max width for elem based on array of possible values
+        window.onresize = function () {
+            setMaxWidth(counterDecs, arrValues);
+        };
+
 
         function setStyle(elem, prop, val) {
             elem.setAttribute("style", prop + ': ' + val);
@@ -89,9 +83,9 @@
             localStorage.setItem("counter", +elem.innerText); // updating localStorage
             counterDecs.innerText = getNumEnding(+elem.innerText, arrValues);
 
-            counter.classList.remove("zero-value");
+            self.counter.classList.remove("zero-value");
             if (+elem.innerText === 0) {
-                counter.classList.add("zero-value");
+                self.counter.classList.add("zero-value");
             }
             setTimeout(function () {
                 updateCounter(elem, minDelay, maxDelay);

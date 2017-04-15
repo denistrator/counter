@@ -1,6 +1,8 @@
 (function () {
+    'use strict';
+    var Counter = function (container, variants, params) {
+        if (!(this instanceof Counter)) return new Counter(container, variants, params);
 
-    Counter = function (container, options) {
         var defaults = {
             minDelay: 0.77,
             maxDelay: 1.11,
@@ -55,7 +57,7 @@
             // find max width for elem based on array of possible values
             window.onresize = function () {
                 setMaxWidth(counterDecs, arrValues);
-            }
+            };
         }
 
         function setStyle(elem, prop, val) {
@@ -136,6 +138,7 @@
             rand = rand.toFixed(2);
             return rand;
         }
+    };
 
-    }
-})();
+    window.Counter = Counter;
+}());

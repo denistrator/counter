@@ -7,7 +7,7 @@ See [example](http://denistrator.esy.es/counter/index.html).
 
 `container` - HTMLElement or string (with CSS Selector). Required.
 
-`variants` - List of words separeted by comma. Required.
+`variants` - Array. List of words separeted by comma. Required.
 
 `params` - Object with counter parameters. Optional.
 

@@ -6,7 +6,7 @@
         var defaults = {
             minDelay: 0.77,
             maxDelay: 1.11,
-            direction: "increase"
+            backwards: false
         };
 
         params = params || {};
@@ -16,6 +16,10 @@
                 params[def] = defaults[def];
             }
         }
+
+        var self = this;
+        self.params = params;
+
         var counter = document.querySelector(container);
 
         if (counter) {
@@ -24,25 +28,17 @@
             }
 
             var counterDecs = counter.nextElementSibling;
-            var minDelay = options.minDelay;
-            var maxDelay = options.maxDelay;
-            var direction = options.direction;
             var counterInLocStor = localStorage.getItem("counter");
             var arrValues = variants.split(",");
 
-            if (minDelay === undefined || minDelay === undefined || isNaN(minDelay) || isNaN(maxDelay)) {
-                minDelay = 2;
-                maxDelay = 5;
-                direction = "increase";
-                console.log("min-delay or max-delay data attr is not set or set incorrect for", counter, "default values were appled");
-            }
+            // if (direction === null || direction === "" ||
+            //     (direction !== "increase" && direction !== "in" &&
+            //     direction !== "decrease" && direction !== "dec")) {
+            //     direction = "increase";
+            //     console.log("direction data attr is not set or set incorrect for", counter, "default value was appled");
+            // }
 
-            if (direction === null || direction === "" ||
-                (direction !== "increase" && direction !== "in" &&
-                direction !== "decrease" && direction !== "dec")) {
-                direction = "increase";
-                console.log("direction data attr is not set or set incorrect for", counter, "default value was appled");
-            }
+
 
             if (counterInLocStor > +counter.innerText &&
                 counterInLocStor < +counter.innerText * 1.4) {
@@ -50,7 +46,7 @@
             } //if value in localStorage exists(and fits), apply it in counter
 
             if (!isNaN(counter.innerText)) {
-                updateCounter(counter, minDelay, maxDelay); //2nd, 3rd args are delay in sec
+                updateCounter(counter, self.params.minDelay, self.params.maxDelay); //2nd, 3rd args are delay in sec
             }
 
             setMaxWidth(counterDecs, arrValues);
@@ -82,11 +78,12 @@
         }
 
         function updateCounter(elem, minDelay, maxDelay) {
-            if (direction === "increase" || direction === "in") {
-                elem.innerText = +elem.innerText + 1;
-            }
-            if (direction === "decrease" || direction === "dec") {
+            // console.log(minDelay);
+            // console.log(maxDelay);
+            if (self.params.backwards) {
                 elem.innerText = +elem.innerText - 1;
+            } else {
+                elem.innerText = +elem.innerText + 1;
             }
 
             localStorage.setItem("counter", +elem.innerText); // updating localStorage

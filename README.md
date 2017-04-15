@@ -2,9 +2,22 @@
 
 See [example](http://denistrator.esy.es/counter/index.html).
 
-All option are in html data attributes(see index.html).
+#### How to initialize 
+```var myCounter = new Counter(container, variants, params);```
 
-You can change direction of counting using keywords `increase` or `in` and `decrease` or `dec` for `data-direction`, 
-as well you can use negative number, as initial counter value.
+`container` - HTMLElement or string (with CSS Selector). Required.
+
+`variants` - List of words separeted by comma. Required.
+
+`params` - Object with counter parameters. Optional.
+
+#### params:
+`minDelay` - Number
+
+`maxDelay` - Number
+
+`backwards` - Boolean. Count direction
+
+You can use negative number, as initial counter value.
 
 Counter uses local Storage.

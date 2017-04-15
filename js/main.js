@@ -12,7 +12,7 @@
         params = params || {};
 
         for (var def in defaults) {
-            if (typeof params[def] === 'undefined') {
+            if (typeof params[def] === 'undefined' || typeof params[def] === null ||isNaN(params[def])) {
                 params[def] = defaults[def];
             }
         }

@@ -1,7 +1,19 @@
 (function () {
 
     Counter = function (container, options) {
+        var defaults = {
+            minDelay: 0.77,
+            maxDelay: 1.11,
+            direction: "increase"
+        };
 
+        params = params || {};
+
+        for (var def in defaults) {
+            if (typeof params[def] === 'undefined') {
+                params[def] = defaults[def];
+            }
+        }
         var counter = document.querySelector(container);
 
         if (counter) {
@@ -14,8 +26,8 @@
             var maxDelay = options.maxDelay;
             var direction = options.direction;
             var counterInLocStor = localStorage.getItem("counter");
-            var arrValues = options.variants.split(",");
-            
+            var arrValues = variants.split(",");
+
             if (minDelay === undefined || minDelay === undefined || isNaN(minDelay) || isNaN(maxDelay)) {
                 minDelay = 2;
                 maxDelay = 5;
